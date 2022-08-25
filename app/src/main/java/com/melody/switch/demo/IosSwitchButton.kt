@@ -139,6 +139,8 @@ internal fun Modifier.swipeTrack(
         .swipeable(
             state = swipeableState,
             anchors = anchors,
+            // 默认情况下，在弹回锚点之前，将允许滑动稍微超出边界, 这里设置为 null 时，滑动不能超出边界
+            resistance = null,
             thresholds = { _, _ ->
                 FractionalThreshold(0.3F)
             },
