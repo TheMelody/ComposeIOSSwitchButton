@@ -50,7 +50,8 @@ fun IosSwitchButton(
         (thumbRadius + gapBetweenThumbAndTrackEdge).toPx()
     }
     val anchors = mapOf(startAnchor to 0, endAnchor to 1)
-    val swipeableState = rememberSwipeableState(initialValue = 0, animationSpec = tween())
+    // FIX：初始化设置checked为true或者false,始终显示的值为false的情况，问题来自：https://github.com/TheMelody/ComposeIOSSwitchButton/issues/1
+    val swipeableState = rememberSwipeableState(initialValue = if(checked) 1 else 0, animationSpec = tween())
     val unCheckedTrackScale = rememberSaveable { mutableStateOf(1F) }
     val checkedTrackLerpColor by remember {
         derivedStateOf {
